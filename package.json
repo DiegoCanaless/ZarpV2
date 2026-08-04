@@ -1,0 +1,24 @@
+{
+  "name": "zarpv2",
+  "private": true,
+  "scripts": {
+    "dev": "pnpm run dev:web & pnpm run dev:api",
+    "dev:web": "pnpm --filter web dev",
+    "dev:api": "pnpm --filter api dev",
+    "build": "pnpm --filter web build & pnpm --filter api build",
+    "lint": "pnpm -r lint",
+    "format": "prettier --write \"apps/**/*.{ts,tsx,js,jsx,json}\" \"packages/**/*.{ts,js,json}\""
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "prisma",
+      "@prisma/client",
+      "@prisma/engines",
+      "esbuild",
+      "unrs-resolver"
+    ]
+  }
+}

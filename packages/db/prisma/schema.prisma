@@ -1,0 +1,32 @@
+// Prisma Schema para ZarpV2
+// Doc oficial: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// TODO: Modelo de datos en Módulo 1 (Base de Datos)
+// Por ahora solo verificamos que Prisma conecta
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  role      Role     @default(CLIENTE)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("users")
+}
+
+enum Role {
+  CLIENTE
+  PROPIETARIO
+  ADMIN
+  SUPERADMIN
+}
