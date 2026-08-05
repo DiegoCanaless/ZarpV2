@@ -1,26 +1,121 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+
+/*
+ * ============================================================
+ * ZARPV2 — DESIGN SYSTEM
+ * ============================================================
+ * Colores, tipografía y espaciado del Figma "Zarp 2.0"
+ * Todos los tokens se usan como clases de Tailwind:
+ *   bg-primary, text-accent, font-heading, etc.
+ * ============================================================
+ */
+
+/* ──────────────────────────────────────
+   1. COLORES (CSS Variables → Tailwind)
+   ────────────────────────────────────── */
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Primarios */
+  --color-primary: #0f171c;
+  --color-primary-soft: #1f2e33;
+
+  /* Acento (CTAs, highlights, el ancla) */
+  --color-accent: #cc2936;
+  --color-accent-soft: #ebc4b8;
+
+  /* Fondo general */
+  --color-surface: #ffffff;
+  --color-cream: #e3dec9;
+
+  /* Texto */
+  --color-text: #0f171c;
+  --color-text-muted: #6b7280;
+  --color-text-on-dark: #f8fafc;
+  --color-text-on-accent: #ffffff;
+
+  /* Bordes y separadores */
+  --color-border: #e5e7eb;
+  --color-border-strong: #d1d5db;
+
+  /* Estados */
+  --color-success: #16a34a;
+  --color-danger: #dc2626;
+  --color-warning: #f59e0b;
 }
+
+/* ──────────────────────────────────────
+   2. TAILWIND v4 — @theme inline
+   Registra los tokens como utilidades de Tailwind
+   ────────────────────────────────────── */
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Colores */
+  --color-primary: var(--color-primary);
+  --color-primary-soft: var(--color-primary-soft);
+  --color-accent: var(--color-accent);
+  --color-accent-soft: var(--color-accent-soft);
+  --color-surface: var(--color-surface);
+  --color-cream: var(--color-cream);
+  --color-text: var(--color-text);
+  --color-text-muted: var(--color-text-muted);
+  --color-text-on-dark: var(--color-text-on-dark);
+  --color-text-on-accent: var(--color-text-on-accent);
+  --color-border: var(--color-border);
+  --color-border-strong: var(--color-border-strong);
+  --color-success: var(--color-success);
+  --color-danger: var(--color-danger);
+  --color-warning: var(--color-warning);
+
+  /* Tipografía */
+  --font-heading: var(--font-heading);
+  --font-body: var(--font-body);
+
+  /* Espaciado base (8px grid) */
+  --spacing-xs: 0.25rem; /* 4px */
+  --spacing-sm: 0.5rem; /* 8px */
+  --spacing-md: 1rem; /* 16px */
+  --spacing-lg: 1.5rem; /* 24px */
+  --spacing-xl: 2rem; /* 32px */
+  --spacing-2xl: 3rem; /* 48px */
+  --spacing-3xl: 4rem; /* 64px */
+  --spacing-4xl: 6rem; /* 96px */
+
+  /* Border radius */
+  --radius-sm: 0.375rem; /* 6px */
+  --radius-md: 0.5rem; /* 8px */
+  --radius-lg: 0.75rem; /* 12px */
+  --radius-xl: 1rem; /* 16px */
+  --radius-full: 9999px; /* pill */
+
+  /* Sombras */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+/* ──────────────────────────────────────
+   3. ESTILOS GLOBALES
+   ────────────────────────────────────── */
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-family: var(--font-body), system-ui, sans-serif;
+}
+
+/* Headings usan Space Grotesk */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading), system-ui, sans-serif;
+}
+
+/* Selección de texto (highlight) */
+::selection {
+  background: var(--color-accent);
+  color: var(--color-text-on-accent);
+}
+
+/* Scroll suave */
+html {
+  scroll-behavior: smooth;
 }
