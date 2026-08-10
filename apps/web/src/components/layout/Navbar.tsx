@@ -5,6 +5,7 @@ import { MorphIcon } from "morphicons/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import Button from "@/components/ui/Button";
 
 const NAV_LINKS = [
     { href: "/", label: "Inicio" },
@@ -40,9 +41,14 @@ export const Navbar = () => {
                     ))}
                 </ul>
 
-                <Link href="/auth/registro" className="bg-accent text-text-on-accent hidden rounded-lg px-5 py-2 text-sm font-semibold transition-colors hover:brightness-110 md:block" >
-                    Crear cuenta
-                </Link>
+                <div className="hidden items-center gap-3 md:flex">
+                    <Button variant="secondary" href="/auth/login" className="rounded-full px-5 py-2">
+                        Iniciar sesión
+                    </Button>
+                    <Button href="/auth/registro" className="rounded-full px-5 py-2">
+                        Registrarme
+                    </Button>
+                </div>
 
                 <button
                     onClick={() => setOpen((o) => !o)}
@@ -101,12 +107,12 @@ export const Navbar = () => {
                         <div className="mx-5 mt-auto h-px bg-border" />
 
                         <div className="flex flex-col gap-3 px-5 py-5">
-                            <Link href="/auth/login" onClick={() => setOpen(false)} className="border-border-strong text-primary flex h-12 items-center justify-center rounded-xl border text-sm font-medium transition-colors hover:bg-border/30" >
+                            <Button variant="secondary" href="/auth/login" onClick={() => setOpen(false)} className="h-12 w-full rounded-full">
                                 Iniciar sesión
-                            </Link>
-                            <Link href="/auth/registro" onClick={() => setOpen(false)} className="bg-accent text-text-on-accent flex h-12 items-center justify-center rounded-xl text-sm font-semibold transition-colors hover:brightness-110" >
-                                Crear cuenta
-                            </Link>
+                            </Button>
+                            <Button href="/auth/registro" onClick={() => setOpen(false)} className="h-12 w-full rounded-full">
+                                Registrarme
+                            </Button>
                         </div>
                     </div>
                 </>

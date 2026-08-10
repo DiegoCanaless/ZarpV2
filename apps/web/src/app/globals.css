@@ -23,8 +23,12 @@
   --color-accent: #cc2936;
   --color-accent-soft: #ebc4b8;
 
+  /* Secundario (botones alternativos, stats) */
+  --color-secondary: #3d4a33;
+
   /* Fondo general */
   --color-surface: #ffffff;
+  --color-bg: #f4f4f4;
   --color-cream: #e3dec9;
 
   /* Texto */
@@ -54,7 +58,9 @@
   --color-primary-soft: var(--color-primary-soft);
   --color-accent: var(--color-accent);
   --color-accent-soft: var(--color-accent-soft);
+  --color-secondary: var(--color-secondary);
   --color-surface: var(--color-surface);
+  --color-bg: var(--color-bg);
   --color-cream: var(--color-cream);
   --color-text: var(--color-text);
   --color-text-muted: var(--color-text-muted);
@@ -99,7 +105,7 @@
    ────────────────────────────────────── */
 
 body {
-  background: var(--color-surface);
+  background: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-body), system-ui, sans-serif;
 }

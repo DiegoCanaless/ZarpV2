@@ -31,7 +31,7 @@ export const Hero = () => {
                         <p className="font-body text-sm font-semibold">4.9</p>
                     </div>
                     <div className="absolute inset-0 bg-primary-soft" />
-                    <Image src="/landing/casa1.jpg" alt="Propiedad Ejemplo" fill className="object-cover" sizes="80vw" />
+                    <Image src="/landing/casa1.webp" alt="Propiedad Ejemplo" fill className="object-cover" sizes="80vw" />
                     <div className="absolute bottom-0 left-0 w-full z-10 text-start p-5 text-surface bg-black/55">
                         <h2 className="text-xl md:text-2xl font-bold">Casa en la montaña</h2>
                         <p className="mt-0.5 text-sm md:text-base text-[#cccccc]">Bariloche, Río Negro</p>
