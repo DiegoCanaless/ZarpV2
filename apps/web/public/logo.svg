@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+  <!-- Anillo superior -->
+  <circle cx="12" cy="4" r="2.2" stroke="#CC2936" stroke-width="2" />
+  <!-- Mástil (línea vertical) -->
+  <path d="M12 6.2V20.5" stroke="#CC2936" stroke-width="2" stroke-linecap="round" />
+  <!-- Brazo transversal -->
+  <path d="M8.2 9H15.8" stroke="#CC2936" stroke-width="2" stroke-linecap="round" />
+  <!-- Curvas de la corona -->
+  <path d="M12 15.2C7.6 15.2 5.4 17 5.4 20" stroke="#CC2936" stroke-width="2" stroke-linecap="round" />
+  <path d="M12 15.2c4.4 0 6.6 1.8 6.6 4.8" stroke="#CC2936" stroke-width="2" stroke-linecap="round" />
+  <!-- Puntas inferiores (flukes) -->
+  <path d="M5.4 17.5 3.6 21.4l3.9-1.5" stroke="#CC2936" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" />
+  <path d="M18.6 17.5l1.8 3.9-3.9-1.5" stroke="#CC2936" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" />
+</svg>
