@@ -1,32 +1,190 @@
-// Prisma Schema para ZarpV2
-// Doc oficial: https://pris.ly/d/prisma-schema
 
-generator client {
-  provider = "prisma-client-js"
+
+generator client{
+    provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+    provider = "postgresql"
+    url = env("DATABASE_URL")
 }
 
-// TODO: Modelo de datos en Módulo 1 (Base de Datos)
-// Por ahora solo verificamos que Prisma conecta
-
-model User {
-  id        String   @id @default(cuid())
-  email     String   @unique
-  name      String?
-  role      Role     @default(CLIENTE)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@map("users")
+model User{
+    id String @id @default(cuid())
+    name_Complete String
+    email String @unique
+    role Role @default(CLIENTE)
+    verification_Email Boolean @default(false)
+    verification_Identity IdentityVerification?
+    properties Property[]
+    review Review[]
+    tenantBookings Booking[] @relation("TenantBookings")
+    ownerBookings Booking[] @relation("OwnerBookings")
 }
+
+model IdentityVerification {
+    id String @id @default(cuid())
+    userId String  @unique
+    status State @default(NOT_SUBMITTED)
+    idCard_Front String
+    idCard_Back String
+    review String?
+
+    user User @relation(fields: [userId], references: [id])
+}
+
+
+
+model Property {
+    id String @id @default(cuid())
+    name_Property String
+    description String
+    ownerId String 
+    price Float
+    location String
+    address String
+    currency String @default("ARS")
+    reviews Review[]
+    photos Photos[]
+    property_verification PropertyVerification?
+    bookings Booking[]
+    typePropertyId String
+    capacities PropertyCapacity[]
+    features FeatureProperty[]
+
+    typeProperty TypeProperty @relation(fields: [typePropertyId], references: [id])
+    owner User @relation(fields: [ownerId], references: [id])
+}
+
+
+model Review {
+    id String @id @default(cuid())
+    userId String 
+    propertyId String 
+    comment String?
+    stars Int
+
+    user User @relation(fields: [userId], references: [id])
+    property Property @relation(fields: [propertyId], references: [id])
+}
+
+model Photos {
+    id String  @id @default(cuid())
+    propertyId String
+    url String
+    order Int
+
+    property Property @relation(fields: [propertyId], references: [id])
+}
+
+model PropertyVerification {
+    id String @id @default(cuid())
+    status State @default(PENDING)
+    comment String?
+    propertyId String @unique
+
+    property Property @relation(fields: [propertyId], references: [id])
+}
+
+model Booking {
+    id String @id @default(cuid())
+    tenantId String
+    ownerId String
+    propertyId String
+    start_Date DateTime
+    end_Date DateTime
+    status BookingStatus @default(PENDING)
+    totalPrice Float
+    tenant User @relation("TenantBookings", fields: [tenantId], references: [id])
+    owner User @relation("OwnerBookings", fields: [ownerId], references: [id])
+    property Property @relation(fields: [propertyId], references: [id])
+    payment Payment?
+}
+
+
+model Payment{
+    id String @id  @default(cuid())
+    bookingId String @unique
+    amount Float
+    stripePaymentId String
+    status PaymentStatus @default(PENDING)
+
+    booking Booking @relation(fields: [bookingId], references: [id])
+}
+
+model TypeProperty {
+    id String @id @default(cuid())
+    name String @unique
+    properties Property[]
+}
+
+model PropertyCapacity {
+    id String @id @default(cuid())
+    quantity Int
+    propertyId String
+    type_personId String
+
+    property Property @relation(fields: [propertyId], references: [id])
+    typePerson TypePerson @relation(fields: [type_personId], references: [id])
+
+    @@unique([propertyId, type_personId])
+}
+
+
+model TypePerson {
+    id String @id @default(cuid())
+    name String @unique
+    capacities PropertyCapacity[]
+}
+
+model FeatureProperty {
+    id String @id @default(cuid())
+    featureId String
+    propertyId String
+    
+    feature Feature @relation(fields: [featureId], references: [id])
+    property Property @relation(fields: [propertyId], references: [id])
+
+    @@unique([propertyId, featureId])
+}
+
+model Feature {
+    id String @id @default(cuid())
+    name String @unique
+    icon String
+
+    featureProperty FeatureProperty[]
+}
+
+
+enum BookingStatus {
+    PENDING
+    CONFIRMED
+    CHECKED_IN
+    CHECKED_OUT
+    CANCELLED 
+    COMPLETED
+}
+
+
+enum PaymentStatus {
+    PENDING
+    COMPLETED
+    FAILED
+    REFUNDED
+}
+
 
 enum Role {
-  CLIENTE
-  PROPIETARIO
-  ADMIN
-  SUPERADMIN
+    CLIENTE
+    PROPIETARIO
+    ADMIN
+    SUPERADMIN
+}
+
+enum State {
+    NOT_SUBMITTED
+    PENDING
+    APPROVED
+    REJECTED
 }
