@@ -28,8 +28,8 @@ pnpm-debug.log*
 # Vercel
 .vercel/
 
-# Prisma
-packages/db/prisma/migrations/
+# Prisma — las migraciones SÍ se versionan (historial del schema)
+# packages/db/prisma/migrations/  ← NO ignorar
 
 # TypeScript
 *.tsbuildinfo
