@@ -1,9 +1,13 @@
 import { PrismaClient } from "@prisma/client"
+import bcrypt from "bcryptjs"
 
 const prisma = new PrismaClient()
 
 async function main() {
     console.log("🌱 Conectado a la BD...")
+
+    // Contraseña común para todos los usuarios de prueba (hasheada)
+    const defaultPassword = await bcrypt.hash("password123", 10)
 
     // ============================================================
     // 1. CATÁLOGOS (upsert = re-ejecutable)
@@ -68,56 +72,61 @@ async function main() {
 
     const admin = await prisma.user.upsert({
         where: { email: "admin@zarp.com" },
-        update: {},
+        update: { password: defaultPassword },
         create: {
             name_Complete: "Admin Zarp",
             email: "admin@zarp.com",
             role: "ADMIN",
-            verification_Email: true
+            verification_Email: true,
+            password: defaultPassword
         }
     })
 
     const juan = await prisma.user.upsert({
         where: { email: "juan@zarp.com" },
-        update: {},
+        update: { password: defaultPassword },
         create: {
             name_Complete: "Juan Pérez",
             email: "juan@zarp.com",
             role: "PROPIETARIO",
-            verification_Email: true
+            verification_Email: true,
+            password: defaultPassword
         }
     })
 
     const carla = await prisma.user.upsert({
         where: { email: "carla@zarp.com" },
-        update: {},
+        update: { password: defaultPassword },
         create: {
             name_Complete: "Carla Rodríguez",
             email: "carla@zarp.com",
             role: "PROPIETARIO",
-            verification_Email: true
+            verification_Email: true,
+            password: defaultPassword
         }
     })
 
     const maria = await prisma.user.upsert({
         where: { email: "maria@zarp.com" },
-        update: {},
+        update: { password: defaultPassword },
         create: {
             name_Complete: "María García",
             email: "maria@zarp.com",
             role: "CLIENTE",
-            verification_Email: true
+            verification_Email: true,
+            password: defaultPassword
         }
     })
 
     const pedro = await prisma.user.upsert({
         where: { email: "pedro@zarp.com" },
-        update: {},
+        update: { password: defaultPassword },
         create: {
             name_Complete: "Pedro López",
             email: "pedro@zarp.com",
             role: "CLIENTE",
-            verification_Email: false
+            verification_Email: false,
+            password: defaultPassword
         }
     })
 
