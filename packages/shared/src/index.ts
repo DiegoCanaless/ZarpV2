@@ -1,9 +1,16 @@
-// Shared types and schemas
-// Agregá acá los schemas de Zod y tipos que compartan frontend y backend
+import { z } from "zod";
 
-export const healthSchema = {
-  status: 'ok',
-  timestamp: new Date().toISOString(),
-};
+export const registerSchema = z.object({
+    name_Complete: z.string().min(2, "El nombre es obligatorio"),
+    email: z.string().email("El email no es válido"),
+    password: z.string().min(6, "La contraseña debe tener al menos 6 caracteres"),
+})
 
-export type HealthResponse = typeof healthSchema;
+export type RegisterInput = z.infer<typeof registerSchema>
+
+export const loginSchema = z.object({
+    email: z.string().email("El email no es válido"),
+    password: z.string().min(1, "La contraseña es obligatoria")
+})
+
+export type LoginInput = z.infer<typeof loginSchema>

@@ -2,6 +2,8 @@ import express from 'express';
 import cors from 'cors';
 import { createServer } from 'http';
 
+import authRoutes from "./routes/auth.routes"
+
 const app = express();
 const server = createServer(app);
 
@@ -14,10 +16,14 @@ app.get('/api/health', (_req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
+app.use("/api/auth", authRoutes)
+
 // TODO: Agregar rutas acá
 
 const PORT = process.env.PORT || 3001;
 
 server.listen(PORT, () => {
-  console.log(`🚀 API running on http://localhost:${PORT}`);
+  console.log(`🚀 API running on http://localhost:${PORT}`)
+  
+
 });
