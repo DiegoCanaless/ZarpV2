@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { loginSchema, registerSchema } from "../schemas/auth.schema";
+import { loginSchema, registerSchema } from "shared";
 import * as authService from "../services/auth.service"
 import { prisma } from "../lib/prisma";
 

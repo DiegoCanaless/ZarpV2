@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  transpilePackages: ["shared"],
   images: {
     // Permitimos SVG local (nuestro logo) con un CSP seguro
     dangerouslyAllowSVG: true,

@@ -69,10 +69,21 @@ async function main() {
     // ============================================================
     // 2. USUARIOS (upsert = re-ejecutable)
     // ============================================================
+    const superadmin = await prisma.user.upsert({
+        where: { email: "superadmin@zarp.com" },
+        update: { password: defaultPassword, photo: "https://i.pravatar.cc/150?img=5" },
+        create: {
+            name_Complete: "Super Admin Zarp",
+            email: "superadmin@zarp.com",
+            role: "SUPERADMIN",
+            verification_Email: true,
+            password: defaultPassword
+        }
+    })
 
     const admin = await prisma.user.upsert({
         where: { email: "admin@zarp.com" },
-        update: { password: defaultPassword },
+        update: { password: defaultPassword, photo: "https://i.pravatar.cc/150?img=6"  },
         create: {
             name_Complete: "Admin Zarp",
             email: "admin@zarp.com",
@@ -84,11 +95,12 @@ async function main() {
 
     const juan = await prisma.user.upsert({
         where: { email: "juan@zarp.com" },
-        update: { password: defaultPassword },
+        update: { password: defaultPassword, photo: "https://i.pravatar.cc/150?img=1", },
         create: {
             name_Complete: "Juan Pérez",
             email: "juan@zarp.com",
             role: "PROPIETARIO",
+            photo: "https://i.pravatar.cc/150?img=1",
             verification_Email: true,
             password: defaultPassword
         }
@@ -96,11 +108,12 @@ async function main() {
 
     const carla = await prisma.user.upsert({
         where: { email: "carla@zarp.com" },
-        update: { password: defaultPassword },
+        update: { password: defaultPassword, photo: "https://i.pravatar.cc/150?img=2"},
         create: {
             name_Complete: "Carla Rodríguez",
             email: "carla@zarp.com",
             role: "PROPIETARIO",
+            photo: "https://i.pravatar.cc/150?img=2",
             verification_Email: true,
             password: defaultPassword
         }
@@ -108,11 +121,12 @@ async function main() {
 
     const maria = await prisma.user.upsert({
         where: { email: "maria@zarp.com" },
-        update: { password: defaultPassword },
+        update: { password: defaultPassword, photo: "https://i.pravatar.cc/150?img=3" },
         create: {
             name_Complete: "María García",
             email: "maria@zarp.com",
             role: "CLIENTE",
+            photo: "https://i.pravatar.cc/150?img=3",
             verification_Email: true,
             password: defaultPassword
         }
@@ -120,11 +134,12 @@ async function main() {
 
     const pedro = await prisma.user.upsert({
         where: { email: "pedro@zarp.com" },
-        update: { password: defaultPassword },
+        update: { password: defaultPassword, photo: "https://i.pravatar.cc/150?img=4" },
         create: {
             name_Complete: "Pedro López",
             email: "pedro@zarp.com",
             role: "CLIENTE",
+            photo: "https://i.pravatar.cc/150?img=4",
             verification_Email: false,
             password: defaultPassword
         }
