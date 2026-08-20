@@ -1,8 +1,7 @@
 import type { Metadata } from 'next';
+import type { ReactNode } from 'react';
 import { Space_Grotesk, Inter } from 'next/font/google';
 import './globals.css';
-import Navbar from '@/components/layout/Navbar';
-import Footer from '@/components/layout/Footer';
 
 // Space Grotesk → Headings (títulos, h1, h2, h3)
 // Es una fuente geométrica, bold, moderna. Para títulos grandes.
@@ -31,16 +30,14 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: LayoutProps<'/'>) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html
       lang="es"
       className={`${spaceGrotesk.variable} ${inter.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-body text-primary">
-        <Navbar/>
         {children}
-        <Footer/>
       </body>
     </html>
   );
