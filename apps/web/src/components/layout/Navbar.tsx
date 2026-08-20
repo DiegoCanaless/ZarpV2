@@ -75,7 +75,10 @@ export const Navbar = () => {
                                 </Button>
                             ) : ("")}
                             {user.photo ? (
-                                <img src={user.photo} alt={user.name_Complete} className="size-9 rounded-full object-cover cursor-pointer transition-opacity hover:opacity-80" />
+                                <Link  href={"profile"}>
+                                    <img src={user.photo} alt={user.name_Complete} className="size-9 rounded-full object-cover cursor-pointer transition-opacity hover:opacity-80" />
+
+                                </Link>
                             ) : (
                                 <div className="grid size-9 place-items-center rounded-full bg-accent text-sm font-bold text-white cursor-pointer transition-opacity hover:opacity-80">
                                     {user.name_Complete[0]}
@@ -158,7 +161,9 @@ export const Navbar = () => {
                                     {/* 1. Identidad del usuario */}
                                     <div className="flex items-center gap-3">
                                         {user.photo ? (
-                                            <img src={user.photo} alt={user.name_Complete} className="size-10 rounded-full object-cover cursor-pointer transition-opacity hover:opacity-80" />
+                                            <Link href={"profile"}>
+                                                <img src={user.photo} alt={user.name_Complete} className="size-10 rounded-full object-cover cursor-pointer transition-opacity hover:opacity-80" />
+                                            </Link>
                                         ) : (
                                             <div className="grid size-10 place-items-center rounded-full bg-accent text-sm font-bold text-white cursor-pointer transition-opacity hover:opacity-80">
                                                 {user.name_Complete[0]}
