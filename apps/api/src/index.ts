@@ -8,7 +8,9 @@ const app: Express = express();
 const server = createServer(app);
 
 // Middleware
-app.use(cors({ origin: process.env.CORS_ORIGIN || '*' }));
+const allowedOrigins = ["http://localhost:3000", process.env.CORS_ORIGIN].filter(Boolean) as string[];
+
+app.use(cors({ origin: allowedOrigins }));
 app.use(express.json());
 
 
